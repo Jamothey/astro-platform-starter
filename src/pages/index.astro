@@ -1,21 +1,188 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
+const SITE = {
+  title: "James Eyler | Computer Engineer & Innovator",
+  tagline: "Embedded systems • Hardware design • Automotive tech",
+};
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const ABOUT = {
+  headshot: "/images/headshot.jpg", // put your image in /public/images/
+  headline: "Hi, I’m James — I design and build embedded systems, IoT platforms, and automotive tech.",
+  bio: `
+I’m a Computer Engineering student at UCF focused on **real-time/embedded software**, **PCB & hardware design**, and **automotive systems**.
+From MSP430/ESP32 firmware and FreeRTOS to custom power/sensor boards and web dashboards, I like turning ideas into reliable builds.
+  `,
+  hardware: `
+**Hardware design focus:** Schematic capture & PCB layout (power, sensing, mixed-signal), regulator selection, decoupling/grounding, and bring-up with scopes/logic analyzers.
+  `
+};
+
+const EDUCATION = [
+  {
+    school: "University of Central Florida (UCF)",
+    program: "B.S. Computer Engineering",
+    dates: "Expected Spring 2026",
+    bullets: [
+      "Embedded Systems, Real-Time Systems (FreeRTOS), Computer Architecture",
+      "Electronics labs: op-amps, difference amps, regulators, ADC/I²C",
+      "Projects with MSP430, ESP32, custom PCBs, web dashboards",
+    ],
+  },
+];
+
+const PROJECTS = [
+  {
+    title: "OpenSense v3",
+    summary: "Open-source sensor platform with modular I²C headers, ESP32 firmware, moving-average filtering, and Wi-Fi web UI.",
+    tags: ["ESP32","FreeRTOS","I²C","PCB"],
+    links: [{ label: "GitHub", href: "https://github.com/your-repo" }],
+    files: [
+      // Drop binaries/pdfs/zip in /public/files and link them here:
+      // { label: "Schematics (PDF)", href: "/files/opensense_v3_schematics.pdf" },
+    ],
+  },
+  {
+    title: "Parking Assist (AV Theme)",
+    summary: "ADC distance sensing with ISR button enable/disable and UART telemetry. Variable LED rate by distance.",
+    tags: ["ESP32","RTOS","ADC","ISR"],
+    links: [],
+    files: [],
+  },
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title={SITE.title}>
+
+  <main class="container">
+    <!-- About -->
+    <section id="about" class="section first">
+      <div class="hero">
+        <img src={ABOUT.headshot} alt="Headshot of James Eyler" />
+        <div>
+          <h1>{SITE.title}</h1>
+          <p class="tagline">{SITE.tagline}</p>
+          <p set:html={ABOUT.headline}></p>
+          <p class="muted" set:html={ABOUT.bio}></p>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Hardware Design</strong>
+        <p class="muted" set:html={ABOUT.hardware}></p>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <div class="grid">
+        {EDUCATION.map((e) => (
+          <article class="card">
+            <h3>{e.school}</h3>
+            <div class="muted">{e.program} • {e.dates}</div>
+            <ul>
+              {e.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+
+      <div class="grid">
+        {PROJECTS.map((p) => (
+          <article class="card">
+            <h3>{p.title}</h3>
+            <p class="muted">{p.summary}</p>
+
+            <div class="tags">
+              {p.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+
+            {p.links.length ? (
+              <div class="links">
+                {p.links.map((l) => <a class="btn btn-ghost" href={l.href} target="_blank" rel="noreferrer">{l.label}</a>)}
+              </div>
+            ) : null}
+
+            {p.files.length ? (
+              <div class="links">
+                {p.files.map((f) => <a class="btn btn-ghost" href={f.href}>{f.label}</a>)}
+              </div>
+            ) : null}
+          </article>
+        ))}
+      </div>
+
+      <!-- Netlify File Upload Form -->
+      <div class="card upload">
+        <h3>Upload a Project File</h3>
+        <p class="muted">Attach PDFs, images, or ZIPs you want to share.</p>
+
+        <form name="project-uploads" method="POST" data-netlify="true" enctype="multipart/form-data" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="project-uploads" />
+          <p class="hidden">
+            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+          </p>
+
+          <label>
+            Your Name
+            <input type="text" name="name" required />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required />
+          </label>
+
+          <label>
+            Project Title
+            <input type="text" name="project" />
+          </label>
+
+          <label>
+            File
+            <input type="file" name="file" required />
+          </label>
+
+          <button class="btn" type="submit">Upload</button>
+        </form>
+
+        <p class="muted tip">
+          Tip: Add <code>action="/success"</code> and create <code>src/pages/success.astro</code> for a thank-you page.
+        </p>
+      </div>
+    </section>
+  </main>
+
 </Layout>
+
+<style>
+  html { scroll-behavior: smooth; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  .section { padding: 3rem 0; border-top: 1px solid #e5e7eb; }
+  .section.first { border-top: 0; padding-top: 1.25rem; }
+  h1 { margin: 0 0 .25rem 0; }
+  h2 { font-size: 1.75rem; margin: 0 0 1rem 0; }
+  .hero { display: grid; grid-template-columns: 120px 1fr; gap: 1.25rem; align-items: center; }
+  .hero img { width: 120px; height: 120px; border-radius: 9999px; object-fit: cover; border: 2px solid #e5e7eb; }
+  .tagline { color:#6b7280; margin:.15rem 0 .5rem; }
+  .muted { color:#4b5563; }
+  .note { margin-top: 1rem; background:#f9fafb; border:1px dashed #e5e7eb; border-radius:12px; padding:1rem; }
+  .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; }
+  .tags { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.5rem; }
+  .tag { font-size:.8rem; padding:.2rem .5rem; border:1px solid #e5e7eb; border-radius:999px; }
+  .links { display:flex; gap:.75rem; margin-top:.75rem; flex-wrap: wrap; }
+  .btn { display:inline-block; border:1px solid #111827; border-radius:10px; padding:.55rem 1rem; text-decoration:none; }
+  .btn-ghost { border-color:#e5e7eb; color:#374151; }
+  .upload form { display:grid; gap:.75rem; max-width:520px; }
+  .upload input[type="text"],
+  .upload input[type="email"] { width:100%; padding:.55rem .7rem; border:1px solid #e5e7eb; border-radius:8px; }
+  .hidden { display:none; }
+  .tip { margin-top:.6rem; }
+</style>

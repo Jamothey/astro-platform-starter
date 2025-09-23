@@ -7,7 +7,7 @@ export interface Props {
 }
 const {
   title = "James Eyler | Computer Engineer & Innovator",
-  tagline = "Embedded systems • Hardware design • Automotive tech",
+  tagline = "Embedded systems • Hardware / Software design • UCF - Spring 2026",
   nav = [
     { label: "About", href: "#about" },
     { label: "Education", href: "#education" },
@@ -18,10 +18,10 @@ const {
 
 <header class="top-nav" role="navigation" aria-label="Main">
   <div class="top-nav-inner">
-    <a href="/" class="brand" aria-label="Home">
+    <div href="/" class="brand" aria-label="Home">
       <strong>{title}</strong>
       <span class="tagline">{tagline}</span>
-    </a>
+    </div>
     <nav class="menu">
       {nav.map((i) => <a href={i.href}>{i.label}</a>)}
     </nav>

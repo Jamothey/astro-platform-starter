@@ -3,19 +3,15 @@ import Layout from '../layouts/Layout.astro';
 
 const SITE = {
   title: "James Eyler | Computer Engineer & Innovator",
-  tagline: "Embedded systems • Hardware design • Automotive tech",
+  tagline: "Embedded systems • Hardware / Software design • UCF - Spring 2026",
 };
 
 const ABOUT = {
   headshot: "/images/headshot.jpeg", // <= your JPEG headshot in /public/images/
-  headline: "Hi, I’m James — I design and build embedded systems, IoT platforms, and automotive tech.",
+  headline: "Hi, I’m James",
   bio: `
-I’m a Computer Engineering student at UCF focused on **real-time/embedded software**, **PCB & hardware design**, and **automotive systems**.
-From MSP430/ESP32 firmware and FreeRTOS to custom power/sensor boards and web dashboards, I like turning ideas into reliable builds.
+I am a Computer Engineering student at the University of Central Florida (UCF) with a strong focus on real-time embedded system software, PCB design (AutoCAD), and system testing. My technical experience spans debugging, prototyping, fabrication, and hardware validation. Alongside these engineering skills, I bring a solid foundation in teamwork, communication, time management, and adaptability — qualities I developed and sharpened while working in fast-paced restaurant environments during my collegiate career.
   `,
-  hardware: `
-**Hardware design focus:** Schematic capture & PCB layout (power, sensing, mixed-signal), regulator selection, decoupling/grounding, and bring-up with scopes/logic analyzers.
-  `
 };
 
 const EDUCATION = [
@@ -29,25 +25,44 @@ const EDUCATION = [
       "Projects with MSP430, ESP32, custom PCBs, web dashboards",
     ],
   },
+  {
+    school: "Mandarin High School",
+    program: "High School Diploma",
+    dates: "Graduated Spring 2019",
+    bullets: [
+      "National Honors Society (NHS)",
+      "Cross Country",
+    ]
+  }
 ];
 
 const PROJECTS = [
   {
-    title: "OpenSense v3",
-    summary: "Open-source sensor platform with modular I²C headers, ESP32 firmware, moving-average filtering, and Wi-Fi web UI.",
-    tags: ["ESP32","FreeRTOS","I²C","PCB"],
-    links: [{ label: "GitHub", href: "https://github.com/your-repo" }],
+    title: "UltraSonic RangeFinder",
+    summary: "A custom made range finder that uses an ultrasonic sensor to display distance",
+    tags: ["Fabrication","Embedded","I²C","PCB Design"],
+    links: [],
     files: [
-      // add real files you place under /public/files/
-      // { label: "Schematics (PDF)", href: "/files/opensense-v3-schematics.pdf" },
-      // { label: "Firmware v1.0 (ZIP)", href: "/files/opensense-v1.0.zip" },
+         { label: "UltraSonicRangeFinder (ZIP)", href: "/files/UltraSonicRangeFinder.zip" },
     ],
   },
   {
-    title: "Parking Assist (AV Theme)",
-    summary: "ADC distance sensing with ISR button enable/disable and UART telemetry. Variable LED rate by distance.",
-    tags: ["ESP32","RTOS","ADC","ISR"],
+    title: "GUI Application",
+    summary: "The front-end of a ficticious E-Store, Nile (Professor: This [name] was because we are not big enough to be Amazon)",
+    tags: ["GUI Design","Software","File IO"],
     links: [],
+    files: [
+      { label: "GUI Application (ZIP)", href: "/files/GUIApplication.zip"},
+    ],
+  },
+  {
+    title: "Wokwi Simulations",
+    summary: "Development Board Simulation Tool - Main use of learning Real Time Operating System principles inside of embedded systems.",
+    tags: ["ESP32","Software","Hardware"],
+    links: [
+      {label: "WebSever Application", href: "https://wokwi.com/projects/437046399178152961"},
+      {label: "Vehicle Parking Sensor System", href: "https://wokwi.com/projects/437637498251979777"},
+    ],
     files: [],
   },
 ];
@@ -69,10 +84,23 @@ const PROJECTS = [
       </div>
 
       <div class="card" style="margin-top: 1rem;">
-        <strong>Hardware Design</strong>
-        <p class="muted" set:html={ABOUT.hardware}></p>
-      </div>
-    </section>
+  <h3>My Background</h3>
+  <p>
+    I was born and raised in Jacksonville, FL, and like many kids born in the 2000s, I grew up surrounded by technology that was still finding its footing. My first real introduction came through school, where I took a class on HTML, and outside of that I was an avid gamer. I loved technology, but for a long time I never thought to ask <em>how</em> things worked — that curiosity came later and ultimately pushed me toward engineering.
+  </p>
+  <p>
+    When I started college at UCF, I wasn’t sure where I was headed. My first major was Architecture, chosen partly from a childhood love of building with Legos. At the same time, I was working at a hospital, balancing school and a job while finishing my general education courses. I didn’t yet have a clear direction, but engineering was always in the back of my mind.
+  </p>
+  <p>
+    A turning point came after a hard but honest conversation with a family member and mentor, who reminded me that growth comes from challenge, not comfort. I changed my major to Computer Engineering and started taking courses that felt both fun and meaningful. That’s when things clicked.
+  </p>
+  <p>
+    To support myself, I also worked at a small used car dealership in Orlando, servicing vehicles and solving whatever problems came through the door. It was there that I made the connection between my coursework and the real world. As I dug deeper into the electrical systems of cars, I began to recognize embedded systems in action — technology I was studying in class applied directly to the vehicles I was repairing. That connection sparked a passion.
+  </p>
+  <p>
+    Since then, I’ve developed an eagerness to keep learning and a drive to stay informed. Engineering has become more than just a major — it’s something I want to pursue as a lifelong career. With graduation expected in Spring 2026, I’m excited to continue building on this foundation, working alongside experienced engineers, and contributing to projects that bring technology to life.
+  </p>
+</div>
 
     <!-- Education -->
     <section id="education" class="section">
@@ -136,5 +164,5 @@ const PROJECTS = [
     background: transparent;
   }
   .tagline { color: var(--muted); margin:.15rem 0 .5rem; }
-  .links { display:flex; gap:.75rem; flex-wrap:wrap; }
+  .links { display:flex; gap:.25rem; flex-wrap:wrap; }
 </style>

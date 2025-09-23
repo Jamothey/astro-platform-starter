@@ -2,167 +2,201 @@
 import Layout from '../layouts/Layout.astro';
 
 const SITE = {
-  title: "James Eyler | Computer Engineer & Innovator",
-  tagline: "Embedded systems • Hardware / Software design • UCF - Spring 2026",
+    title: 'James Eyler | Computer Engineer & Innovator',
+    tagline: 'Embedded systems • Hardware / Software design • UCF - Spring 2026'
 };
 
 const ABOUT = {
-  headshot: "/images/headshot.jpeg", // <= your JPEG headshot in /public/images/
-  headline: "Hi, I’m James",
-  bio: `
+    headshot: '/images/headshot.jpeg', // <= your JPEG headshot in /public/images/
+    headline: 'Hi, I’m James',
+    bio: `
 I am a Computer Engineering student at the University of Central Florida (UCF) with a strong focus on real-time embedded system software, PCB design (AutoCAD), and system testing. My technical experience spans debugging, prototyping, fabrication, and hardware validation. Alongside these engineering skills, I bring a solid foundation in teamwork, communication, time management, and adaptability — qualities I developed and sharpened while working in fast-paced restaurant environments during my collegiate career.
-  `,
+  `
 };
 
 const EDUCATION = [
-  {
-    school: "University of Central Florida (UCF)",
-    program: "B.S. Computer Engineering",
-    dates: "Expected Spring 2026",
-    bullets: [
-      "Embedded Systems, Real-Time Systems (FreeRTOS), Computer Architecture",
-      "Electronics labs: op-amps, difference amps, regulators, ADC/I²C",
-      "Projects with MSP430, ESP32, custom PCBs, web dashboards",
-    ],
-  },
-  {
-    school: "Mandarin High School",
-    program: "High School Diploma",
-    dates: "Graduated Spring 2019",
-    bullets: [
-      "National Honors Society (NHS)",
-      "Cross Country",
-    ]
-  }
+    {
+        school: 'University of Central Florida (UCF)',
+        program: 'B.S. Computer Engineering',
+        dates: 'Expected Spring 2026',
+        bullets: [
+            'Embedded Systems, Real-Time Systems (FreeRTOS), Computer Architecture',
+            'Electronics labs: op-amps, difference amps, regulators, ADC/I²C',
+            'Projects with MSP430, ESP32, custom PCBs, web dashboards'
+        ]
+    },
+    {
+        school: 'Mandarin High School',
+        program: 'High School Diploma',
+        dates: 'Graduated Spring 2019',
+        bullets: ['National Honors Society (NHS)', 'Cross Country']
+    }
 ];
 
 const PROJECTS = [
-  {
-    title: "UltraSonic RangeFinder",
-    summary: "A custom made range finder that uses an ultrasonic sensor to display distance",
-    tags: ["Fabrication","Embedded","I²C","PCB Design"],
-    links: [],
-    files: [
-         { label: "UltraSonicRangeFinder (ZIP)", href: "/files/UltraSonicRangeFinder.zip" },
-    ],
-  },
-  {
-    title: "GUI Application",
-    summary: "The front-end of a ficticious E-Store, Nile (Professor: This [name] was because we are not big enough to be Amazon)",
-    tags: ["GUI Design","Software","File IO"],
-    links: [],
-    files: [
-      { label: "GUI Application (ZIP)", href: "/files/GUIApplication.zip"},
-    ],
-  },
-  {
-    title: "Wokwi Simulations",
-    summary: "Development Board Simulation Tool - Main use of learning Real Time Operating System principles inside of embedded systems.",
-    tags: ["ESP32","Software","Hardware"],
-    links: [
-      {label: "WebSever Application", href: "https://wokwi.com/projects/437046399178152961"},
-      {label: "Vehicle Parking Sensor System", href: "https://wokwi.com/projects/437637498251979777"},
-    ],
-    files: [],
-  },
+    {
+        title: 'UltraSonic RangeFinder',
+        summary: 'A custom made range finder that uses an ultrasonic sensor to display distance',
+        tags: ['Fabrication', 'Embedded', 'I²C', 'PCB Design'],
+        links: [],
+        files: [{ label: 'UltraSonicRangeFinder (ZIP)', href: '/files/UltraSonicRangeFinder.zip' }]
+    },
+    {
+        title: 'GUI Application',
+        summary: 'The front-end of a ficticious E-Store, Nile (Professor: This [name] was because we are not big enough to be Amazon)',
+        tags: ['GUI Design', 'Software', 'File IO'],
+        links: [],
+        files: [{ label: 'GUI Application (ZIP)', href: '/files/GUIApplication.zip' }]
+    },
+    {
+        title: 'Wokwi Simulations',
+        summary: 'Development Board Simulation Tool - Main use of learning Real Time Operating System principles inside of embedded systems.',
+        tags: ['ESP32', 'Software', 'Hardware'],
+        links: [
+            { label: 'WebSever Application', href: 'https://wokwi.com/projects/437046399178152961' },
+            { label: 'Vehicle Parking Sensor System', href: 'https://wokwi.com/projects/437637498251979777' }
+        ],
+        files: []
+    }
 ];
 ---
 
 <Layout title={SITE.title}>
-
-  <main class="container">
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="hero">
-        <img src={ABOUT.headshot} alt="Headshot of James Eyler" />
-        <div>
-          <h1>{SITE.title}</h1>
-          <p class="tagline">{SITE.tagline}</p>
-          <p set:html={ABOUT.headline}></p>
-          <p class="muted" set:html={ABOUT.bio}></p>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top: 1rem;">
-  <h3>My Background</h3>
-  <p>
-    I was born and raised in Jacksonville, FL, and like many kids born in the 2000s, I grew up surrounded by technology that was still finding its footing. My first real introduction came through school, where I took a class on HTML, and outside of that I was an avid gamer. I loved technology, but for a long time I never thought to ask <em>how</em> things worked — that curiosity came later and ultimately pushed me toward engineering.
-  </p>
-  <p>
-    When I started college at UCF, I wasn’t sure where I was headed. My first major was Architecture, chosen partly from a childhood love of building with Legos. At the same time, I was working at a hospital, balancing school and a job while finishing my general education courses. I didn’t yet have a clear direction, but engineering was always in the back of my mind.
-  </p>
-  <p>
-    A turning point came after a hard but honest conversation with a family member and mentor, who reminded me that growth comes from challenge, not comfort. I changed my major to Computer Engineering and started taking courses that felt both fun and meaningful. That’s when things clicked.
-  </p>
-  <p>
-    To support myself, I also worked at a small used car dealership in Orlando, servicing vehicles and solving whatever problems came through the door. It was there that I made the connection between my coursework and the real world. As I dug deeper into the electrical systems of cars, I began to recognize embedded systems in action — technology I was studying in class applied directly to the vehicles I was repairing. That connection sparked a passion.
-  </p>
-  <p>
-    Since then, I’ve developed an eagerness to keep learning and a drive to stay informed. Engineering has become more than just a major — it’s something I want to pursue as a lifelong career. With graduation expected in Spring 2026, I’m excited to continue building on this foundation, working alongside experienced engineers, and contributing to projects that bring technology to life.
-  </p>
-</div>
-
-    <!-- Education -->
-    <section id="education" class="section">
-      <h2>Education</h2>
-      <div class="grid">
-        {EDUCATION.map((e) => (
-          <article class="card">
-            <h3>{e.school}</h3>
-            <div class="muted">{e.program} • {e.dates}</div>
-            <ul>
-              {e.bullets.map((b) => <li>{b}</li>)}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-
-      <div class="grid">
-        {PROJECTS.map((p) => (
-          <article class="card">
-            <h3>{p.title}</h3>
-            <p class="muted">{p.summary}</p>
-
-            <div class="tags">
-              {p.tags.map((t) => <span class="tag">{t}</span>)}
+    <main class="container">
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="hero">
+                <img src={ABOUT.headshot} alt="Headshot of James Eyler" />
+                <div>
+                    <h1>{SITE.title}</h1>
+                    <p class="tagline">{SITE.tagline}</p>
+                    <p set:html={ABOUT.headline} />
+                    <p class="muted" set:html={ABOUT.bio} />
+                </div>
             </div>
 
-            {p.links.length ? (
-              <div class="links">
-                {p.links.map((l) => <a class="btn" href={l.href} target="_blank" rel="noreferrer">{l.label}</a>)}
-              </div>
-            ) : null}
+            <div class="card" style="margin-top: 1rem;">
+                <h3>My Background</h3>
+                <p>
+                    I was born and raised in Jacksonville, FL, and like many kids born in the 2000s, I grew up surrounded by technology that was still finding
+                    its footing. My first real introduction came through school, where I took a class on HTML, and outside of that I was an avid gamer. I loved
+                    technology, but for a long time I never thought to ask <em>how</em> things worked — that curiosity came later and ultimately pushed me toward
+                    engineering.
+                </p>
+                <p>
+                    When I started college at UCF, I wasn’t sure where I was headed. My first major was Architecture, chosen partly from a childhood love of
+                    building with Legos. At the same time, I was working at a hospital, balancing school and a job while finishing my general education courses.
+                    I didn’t yet have a clear direction, but engineering was always in the back of my mind.
+                </p>
+                <p>
+                    A turning point came after a hard but honest conversation with a family member and mentor, who reminded me that growth comes from challenge,
+                    not comfort. I changed my major to Computer Engineering and started taking courses that felt both fun and meaningful. That’s when things
+                    clicked.
+                </p>
+                <p>
+                    To support myself, I also worked at a small used car dealership in Orlando, servicing vehicles and solving whatever problems came through
+                    the door. It was there that I made the connection between my coursework and the real world. As I dug deeper into the electrical systems of
+                    cars, I began to recognize embedded systems in action — technology I was studying in class applied directly to the vehicles I was repairing.
+                    That connection sparked a passion.
+                </p>
+                <p>
+                    Since then, I’ve developed an eagerness to keep learning and a drive to stay informed. Engineering has become more than just a major — it’s
+                    something I want to pursue as a lifelong career. With graduation expected in Spring 2026, I’m excited to continue building on this
+                    foundation, working alongside experienced engineers, and contributing to projects that bring technology to life.
+                </p>
+            </div>
 
-            {p.files.length ? (
-              <div class="links" style="margin-top:.5rem;">
-                {p.files.map((f) => <a class="btn" href={f.href}>{f.label}</a>)}
-              </div>
-            ) : null}
-          </article>
-        ))}
-      </div>
+            <!-- Education -->
+            <section id="education" class="section">
+                <h2>Education</h2>
+                <div class="grid">
+                    {
+                        EDUCATION.map((e) => (
+                            <article class="card">
+                                <h3>{e.school}</h3>
+                                <div class="muted">
+                                    {e.program} • {e.dates}
+                                </div>
+                                <ul>
+                                    {e.bullets.map((b) => (
+                                        <li>{b}</li>
+                                    ))}
+                                </ul>
+                            </article>
+                        ))
+                    }
+                </div>
+            </section>
 
-      <!-- No visitor upload form (per your request) -->
-    </section>
-  </main>
+            <!-- Projects -->
+            <section id="projects" class="section">
+                <h2>Projects</h2>
 
+                <div class="grid">
+                    {
+                        PROJECTS.map((p) => (
+                            <article class="card">
+                                <h3>{p.title}</h3>
+                                <p class="muted">{p.summary}</p>
+
+                                <div class="tags">
+                                    {p.tags.map((t) => (
+                                        <span class="tag">{t}</span>
+                                    ))}
+                                </div>
+
+                                {p.links.length ? (
+                                    <div class="links">
+                                        {p.links.map((l) => (
+                                            <a class="btn" href={l.href} target="_blank" rel="noreferrer">
+                                                {l.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                ) : null}
+
+                                {p.files.length ? (
+                                    <div class="links" style="margin-top:.5rem;">
+                                        {p.files.map((f) => (
+                                            <a class="btn" href={f.href}>
+                                                {f.label}
+                                            </a>
+                                        ))}
+                                    </div>
+                                ) : null}
+                            </article>
+                        ))
+                    }
+                </div>
+
+                <!-- No visitor upload form (per your request) -->
+            </section>
+        </section>
+    </main>
+
+    <style>
+        .hero {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1.25rem;
+            align-items: center;
+        }
+        .hero img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 9999px;
+            border: 2px solid var(--border);
+            background: transparent;
+        }
+        .tagline {
+            color: var(--muted);
+            margin: 0.15rem 0 0.5rem;
+        }
+        .links {
+            display: flex;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+    </style>
 </Layout>
-
-<style>
-  .hero {
-    display: grid; grid-template-columns: 120px 1fr;
-    gap: 1.25rem; align-items: center;
-  }
-  .hero img {
-    width: 120px; height: 120px; object-fit: cover;
-    border-radius: 9999px; border: 2px solid var(--border);
-    background: transparent;
-  }
-  .tagline { color: var(--muted); margin:.15rem 0 .5rem; }
-  .links { display:flex; gap:.25rem; flex-wrap:wrap; }
-</style>

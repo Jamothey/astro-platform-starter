@@ -1,4 +1,4 @@
-/* --- global base (add to globals.css) --- */
+/* --- global base --- */
 :root{
   --bg: #f7f8fc;      /* light background */
   --fg: #111111;      /* black text */
@@ -8,7 +8,6 @@
 }
 
 html { scroll-behavior: smooth; }
-
 * { box-sizing: border-box; }
 
 body {
@@ -18,13 +17,13 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
-/* generic helpers */
+/* layout helpers */
 .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
 .section {
   padding: 3rem 0;
   border-top: 1px solid var(--border);
-  /* critical: prevents anchor targets from being hidden under sticky header */
-  scroll-margin-top: var(--header-h);
+  scroll-margin-top: var(--header-h); /* prevents anchor from hiding under header */
 }
 .section:first-of-type { border-top: 0; padding-top: 1.25rem; }
 
@@ -44,14 +43,14 @@ h2 { font-size: 1.75rem; margin: 0 0 0.25rem 0; }
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
+/* tags + links */
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
-  margin-top: 0rem;          /* no space above tags */
-  margin-bottom: 0.25rem;       /* no space below tags */
+  margin-top: 0;
+  margin-bottom: 0.25rem;
 }
-
 .tag {
   font-size: .8rem;
   padding: .2rem .5rem;
@@ -59,26 +58,100 @@ h2 { font-size: 1.75rem; margin: 0 0 0.25rem 0; }
   border-radius: 999px;
   background: transparent;
   color: var(--fg);
-  margin-bottom: 0.25rem;       /* <-- fix the typo here */
+  margin-bottom: 0.25rem;
 }
-
 .links {
-  display: flex;          /* ensure flex so gap works */
+  display: flex;
   flex-wrap: wrap;
-  gap: .35rem .5rem;      /* tighter row/column spacing */
-  margin-top: 0;          /* remove extra gap above links */
-  margin-bottom: 0;       /* (optional) keep it snug below */
+  gap: .35rem .5rem;
+  margin-top: 0;
+  margin-bottom: 0;
 }
-
 .btn {
-  display:inline-block;
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:0.3rem 0.6rem;
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
   font-size: 0.85rem;
-  text-decoration:none;
+  text-decoration: none;
   color: var(--fg);
   background: transparent;
 }
 
 .muted { color: var(--muted); }
+
+/* ---------- RESPONSIVE ---------- */
+
+/* Tablet: slightly tighter grid, smaller header if desired */
+@media (max-width: 900px) {
+  :root { --header-h: 60px; }
+
+  .container { padding: 1.25rem .9rem 2.25rem; }
+
+  .grid {
+    gap: .9rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  h2 { font-size: 1.6rem; }
+  .card { padding: .9rem; }
+  .btn { font-size: 0.82rem; padding: 0.28rem 0.55rem; }
+}
+
+/* Mobile: stack hero, single-column cards, tighter spacing */
+@media (max-width: 600px) {
+  :root { --header-h: 56px; }
+
+  .container { padding: 1rem .75rem 2rem; }
+
+  /* If you have a .hero block (headshot + text), stack it */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    text-align: center;
+  }
+  .hero img {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid var(--border);
+  }
+
+  .grid {
+    grid-template-columns: 1fr; /* cards stack */
+    gap: .85rem;
+  }
+
+  .card { padding: .8rem; }
+
+  /* tighten heading/paragraph spacing inside cards */
+  .card h3 { margin: 0 0 .2rem 0; }
+  .card p { margin-top: 0; margin-bottom: .5rem; }
+  .card p:last-of-type { margin-bottom: 0; }
+
+  /* compact tags/links */
+  .tags { gap: .4rem; margin-bottom: .2rem; }
+  .tag { font-size: .78rem; padding: .18rem .45rem; }
+
+  .links { gap: .3rem .45rem; }
+  .btn {
+    font-size: .82rem;
+    padding: .28rem .5rem;
+    border-radius: 7px;
+  }
+
+  /* optional: make link buttons full-width on very small screens
+     Uncomment if you prefer stacked full-width downloads.
+  .links .btn { width: 100%; text-align: center; }
+  */
+}
+
+/* Ultra-small phones */
+@media (max-width: 380px) {
+  .container { padding: .85rem .6rem 1.5rem; }
+  .btn { font-size: .8rem; padding: .26rem .48rem; }
+  .tag { font-size: .75rem; }
+}

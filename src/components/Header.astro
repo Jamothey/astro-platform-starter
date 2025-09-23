@@ -16,9 +16,9 @@ const {
 } = Astro.props;
 ---
 
-<header class="top-nav">
+<header class="top-nav" role="navigation" aria-label="Main">
   <div class="top-nav-inner">
-    <a href="/" class="brand">
+    <a href="/" class="brand" aria-label="Home">
       <strong>{title}</strong>
       <span class="tagline">{tagline}</span>
     </a>
@@ -29,10 +29,23 @@ const {
 </header>
 
 <style>
-  .top-nav { position: sticky; top: 0; z-index: 30; background: white; border-bottom: 1px solid #e5e7eb; }
-  .top-nav-inner { max-width: 1100px; margin: 0 auto; padding: .75rem 1rem; display: flex; gap: 1rem; align-items: center; justify-content: space-between; }
-  .brand { text-decoration: none; color: inherit; display: grid; }
-  .tagline { color:#6b7280; font-size:.9rem; }
-  .menu a { text-decoration: none; color:#374151; padding:.4rem .6rem; border-radius:8px; }
-  .menu a:hover { background:#f3f4f6; }
+  .top-nav {
+    position: sticky; top: 0; z-index: 30;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    height: var(--header-h);
+  }
+  .top-nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: .5rem 1rem;
+    height: 100%;
+    display: flex; gap: 1rem; align-items: center; justify-content: space-between;
+  }
+  .brand { text-decoration: none; color: var(--fg); display: grid; line-height: 1.15; }
+  .tagline { color: var(--muted); font-size:.9rem; }
+  .menu a {
+    text-decoration: none; color: var(--fg);
+    padding:.4rem .6rem; border-radius:8px; border:1px solid transparent;
+  }
+  .menu a:hover { border-color: var(--border); }
 </style>

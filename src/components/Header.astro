@@ -1,51 +1,73 @@
 ---
-export interface NavItem { label: string; href: string }
+export interface NavItem {
+    label: string;
+    href: string;
+}
 export interface Props {
-  title?: string;
-  tagline?: string;
-  nav?: NavItem[];
+    title?: string;
+    tagline?: string;
+    nav?: NavItem[];
 }
 const {
-  title = "James Eyler | Computer Engineer & Innovator",
-  tagline = "Embedded systems • Hardware / Software design • UCF - Spring 2026",
-  nav = [
-    { label: "About", href: "#about" },
-    { label: "Education", href: "#education" },
-    { label: "Projects", href: "#projects" },
-  ],
+    title = 'James Eyler | Computer Engineer',
+    tagline = '',
+    nav = [
+        { label: 'About', href: '#about' },
+        { label: 'Education', href: '#education' },
+        { label: 'Projects', href: '#projects' }
+    ]
 } = Astro.props;
 ---
 
 <header class="top-nav" role="navigation" aria-label="Main">
-  <div class="top-nav-inner">
-    <div href="/" class="brand" aria-label="Home">
-      <strong>{title}</strong>
-      <span class="tagline">{tagline}</span>
+    <div class="top-nav-inner">
+        <div href="/" class="brand" aria-label="Home">
+            <strong>{title}</strong>
+            <span class="tagline">{tagline}</span>
+        </div>
+        <nav class="menu">
+            {nav.map((i) => <a href={i.href}>{i.label}</a>)}
+        </nav>
     </div>
-    <nav class="menu">
-      {nav.map((i) => <a href={i.href}>{i.label}</a>)}
-    </nav>
-  </div>
 </header>
 
 <style>
-  .top-nav {
-    position: sticky; top: 0; z-index: 30;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    height: var(--header-h);
-  }
-  .top-nav-inner {
-    max-width: 1100px; margin: 0 auto;
-    padding: .5rem 1rem;
-    height: 100%;
-    display: flex; gap: 1rem; align-items: center; justify-content: space-between;
-  }
-  .brand { text-decoration: none; color: var(--fg); display: grid; line-height: 1.15; }
-  .tagline { color: var(--muted); font-size:.9rem; }
-  .menu a {
-    text-decoration: none; color: var(--fg);
-    padding:.4rem .6rem; border-radius:8px; border:1px solid transparent;
-  }
-  .menu a:hover { border-color: var(--border); }
+    .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        height: var(--header-h);
+    }
+    .top-nav-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+        height: 100%;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .brand {
+        text-decoration: none;
+        color: var(--fg);
+        display: grid;
+        line-height: 1.15;
+    }
+    .tagline {
+        color: var(--muted);
+        font-size: 0.9rem;
+    }
+    .menu a {
+        text-decoration: none;
+        color: var(--fg);
+        padding: 0.4rem 0.6rem;
+        border-radius: 8px;
+        border: 1px solid transparent;
+    }
+    .menu a:hover {
+        border-color: var(--border);
+    }
 </style>
